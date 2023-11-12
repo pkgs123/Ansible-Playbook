@@ -1,0 +1,21 @@
+### Defining the hosts section
+- hosts: 34.239.183.10
+  become: true
+  become_method: sudo
+
+### Defining the variable section
+  vars:
+   "package1": "apache2"
+   "package2": "docker.io"
+   "package3": "git"
+
+### Defining the tasks section
+  tasks:
+  - name: "Update the remote machine"
+    command: apt update -y
+  - name: "Installing {{package1}}"
+    apt: name={{package1}} state=latest
+  - name: "Installing {{package2}}"
+    apt: name={{package2}} state=latest
+  - name: "Installing {{package3}}"
+    apt: name={{package3}} state=latest
