@@ -19,3 +19,11 @@
     apt: name={{package2}} state=latest
   - name: "Installing {{package3}}"
     apt: name={{package3}} state=latest
+  - name: "Copy the index.html file"
+    copy: src=/home/ubuntu/index.html dest=/var/www/html/
+    notify: apache2_service
+
+### Defining the handler section
+  handlers:
+  - name: apache2_service
+    service: name={{package1}} state=restarted
